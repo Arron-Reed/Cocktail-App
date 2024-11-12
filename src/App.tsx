@@ -16,8 +16,14 @@ const App: React.FC = () => {
   const handleSearch = async (query: string) => {
     setToasterMessage("Searching...");
     const results = await searchCocktails(query);
-    setCocktails(results || []);
-    setToasterMessage(results ? "Here are the results." : "No results found.");
+  
+    if (results && results.length > 0) {
+      setCocktails(results);
+      setToasterMessage("Here are the results.");
+    } else {
+      setCocktails([]);
+      setToasterMessage("No results found.");
+    }
   };
 
   const handleAddToShoppingList = (ingredients: string[]) => {
