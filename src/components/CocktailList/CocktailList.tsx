@@ -4,12 +4,12 @@ import CocktailCard from "../CocktailCard/CocktailCard";
 
 interface CocktailListProps {
   cocktails: Cocktail[];
-  
+  onAddToShoppingList: (ingredients: string[]) => void;
 }
 
 const CocktailList: React.FC<CocktailListProps> = ({
   cocktails,
-  
+  onAddToShoppingList,
 }) => {
   if (cocktails.length === 0) {
     return <p>No cocktails found. Try searching for something else!</p>;
@@ -23,7 +23,7 @@ const CocktailList: React.FC<CocktailListProps> = ({
         <CocktailCard
           key={cocktail.idDrink}
           cocktail={cocktail}
-         
+          onAddToShoppingList={onAddToShoppingList}
         />
       ))}
     </div>
