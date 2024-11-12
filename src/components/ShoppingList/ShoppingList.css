@@ -1,0 +1,24 @@
+/* In your main CSS file, e.g., App.css or ShoppingList.css */
+
+/* Print-specific styles */
+@media print {
+    /* Hide all elements on the page */
+    body * {
+      visibility: hidden;
+    }
+  
+    /* Make the ingredients list visible for printing */
+    .printable-list, .printable-list * {
+      visibility: visible;
+    }
+  
+    /* Optional: Center the list on the page */
+    .printable-list {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      font-size: 1.2em; /* Adjust font size if needed */
+      padding: 20px;
+    }
+  }
