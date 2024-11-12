@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Cocktail } from "../../services/cocktailApiService"
 
 interface CocktailCardProps {
@@ -8,7 +8,7 @@ interface CocktailCardProps {
 
 const CocktailCard: React.FC<CocktailCardProps> = ({ cocktail, onAddToShoppingList }) => {
   const ingredients = Object.keys(cocktail)
-    .filter(key => key.startsWith('strIngredient') && cocktail[key as keyof Cocktail])
+    .filter(key => key.startsWith("strIngredient") && cocktail[key as keyof Cocktail])
     .map(key => cocktail[key as keyof Cocktail] as string);
 
   return (

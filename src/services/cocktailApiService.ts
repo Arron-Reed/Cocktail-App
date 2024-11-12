@@ -16,12 +16,12 @@ export interface Cocktail {
   export const searchCocktails = async (query: string): Promise<Cocktail[] | null> => {
     try {
       const response = await fetch(`${BASE_URL}/search.php?s=${query}`);
-      if (!response.ok) throw new Error('Network response was not ok');
+      if (!response.ok) throw new Error("Network response was not ok");
       
       const data = await response.json();
       return data.drinks || [];
     } catch (error) {
-      console.error('Failed to fetch cocktails:', error);
+      console.error("Failed to fetch cocktails:", error);
       return null;
     }
   };
