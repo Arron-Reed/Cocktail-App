@@ -20,29 +20,43 @@ const App: React.FC = () => {
   const handleAddToShoppingList = (ingredients: string[]) => {
     const updatedIngredients = removeCaseInsensitiveDuplicates([
       ...Array.from(shoppingList),
-      ...ingredients
+      ...ingredients,
     ]);
-  
     setShoppingList(new Set(updatedIngredients));
     setToasterMessage("Ingredients added to shopping list.");
   };
-  
+
+  const handleRemoveFromShoppingList = (ingredient: string) => {
+    const updatedList = new Set(shoppingList);
+    updatedList.delete(ingredient); // Remove the specified ingredient
+    setShoppingList(updatedList); // Update the state with the modified list
+    setToasterMessage(`${ingredient} removed from shopping list.`);
+  };
+
   // Removes case-insensitive duplicate ingredients (eg Lime juice, Lime Juice)
   function removeCaseInsensitiveDuplicates(arr: string[]): string[] {
     return Array.from(
-      arr.reduce((map, item) => {
-        map.set(item.toLowerCase(), item);
-        return map;
-      }, new Map()).values()
+      arr
+        .reduce((map, item) => {
+          map.set(item.toLowerCase(), item);
+          return map;
+        }, new Map())
+        .values()
     );
   }
 
   return (
     <div>
       <SearchBar onSearch={handleSearch} />
-      <CocktailList cocktails={cocktails} onAddToShoppingList={handleAddToShoppingList} />
-      <ShoppingList ingredients={shoppingList} />
       <Toaster message={toasterMessage} />
+      <CocktailList
+        cocktails={cocktails}
+        onAddToShoppingList={handleAddToShoppingList}
+      />
+      <ShoppingList
+        ingredients={shoppingList}
+        onRemoveItem={handleRemoveFromShoppingList}
+      />
     </div>
   );
 };

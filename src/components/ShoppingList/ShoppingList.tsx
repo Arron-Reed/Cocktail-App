@@ -3,9 +3,10 @@ import "./ShoppingList.css";
 
 interface ShoppingListProps {
   ingredients: Set<string>;
+  onRemoveItem: (ingredient: string) => void; // Add this prop to remove an item
 }
 
-const ShoppingList: React.FC<ShoppingListProps> = ({ ingredients }) => {
+const ShoppingList: React.FC<ShoppingListProps> = ({ ingredients, onRemoveItem }) => {
   const ingredientArray = Array.from(ingredients);
 
   const handlePrint = () => {
@@ -17,7 +18,10 @@ const ShoppingList: React.FC<ShoppingListProps> = ({ ingredients }) => {
       <h2>Shopping List</h2>
       <ul className="printable-list">
         {ingredientArray.map((ingredient, index) => (
-          <li key={index}>{ingredient}</li>
+          <li key={index}>
+            {ingredient}
+            <button onClick={() => onRemoveItem(ingredient)}>Remove</button> {/* Remove button */}
+          </li>
         ))}
       </ul>
       {ingredientArray.length > 0 && (
