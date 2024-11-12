@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchBar from "./components/SearchBar/SearchBar";
 import CocktailList from "./components/CocktailList/CocktailList";
 import ShoppingList from "./components/ShoppingList/ShoppingList";
@@ -6,8 +6,11 @@ import Toaster from "./components/Toaster/Toaster";
 import { searchCocktails, Cocktail } from "./services/cocktailApiService";
 
 const App: React.FC = () => {
+  const [shoppingList, setShoppingList] = useState<Set<string>>(() => {
+    const savedList = localStorage.getItem("shoppingList");
+    return savedList ? new Set(JSON.parse(savedList)) : new Set();
+  });
   const [cocktails, setCocktails] = useState<Cocktail[]>([]);
-  const [shoppingList, setShoppingList] = useState(new Set<string>());
   const [toasterMessage, setToasterMessage] = useState("");
 
   const handleSearch = async (query: string) => {
@@ -28,8 +31,8 @@ const App: React.FC = () => {
 
   const handleRemoveFromShoppingList = (ingredient: string) => {
     const updatedList = new Set(shoppingList);
-    updatedList.delete(ingredient); // Remove the specified ingredient
-    setShoppingList(updatedList); // Update the state with the modified list
+    updatedList.delete(ingredient);
+    setShoppingList(updatedList);
     setToasterMessage(`${ingredient} removed from shopping list.`);
   };
 
@@ -44,6 +47,14 @@ const App: React.FC = () => {
         .values()
     );
   }
+
+  // Save shopping list to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem(
+      "shoppingList",
+      JSON.stringify(Array.from(shoppingList))
+    );
+  }, [shoppingList]);
 
   return (
     <div>
