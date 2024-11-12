@@ -16,7 +16,6 @@ const App: React.FC = () => {
   const handleSearch = async (query: string) => {
     setToasterMessage("Searching...");
     const results = await searchCocktails(query);
-  
     if (results && results.length > 0) {
       setCocktails(results);
       setToasterMessage("Here are the results.");
@@ -54,7 +53,10 @@ const App: React.FC = () => {
     );
   }
 
-  // Save shopping list to localStorage whenever it changes
+  const hideToaster = () => {
+    setToasterMessage("");
+  };
+
   useEffect(() => {
     localStorage.setItem(
       "shoppingList",
@@ -65,7 +67,7 @@ const App: React.FC = () => {
   return (
     <div>
       <SearchBar onSearch={handleSearch} />
-      <Toaster message={toasterMessage} />
+      <Toaster message={toasterMessage} onHide={hideToaster} />
       <CocktailList
         cocktails={cocktails}
         onAddToShoppingList={handleAddToShoppingList}

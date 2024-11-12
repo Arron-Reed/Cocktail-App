@@ -3,7 +3,7 @@ import "./ShoppingList.css";
 
 interface ShoppingListProps {
   ingredients: Set<string>;
-  onRemoveItem: (ingredient: string) => void; // Add this prop to remove an item
+  onRemoveItem: (ingredient: string) => void;
 }
 
 const ShoppingList: React.FC<ShoppingListProps> = ({ ingredients, onRemoveItem }) => {
@@ -20,7 +20,7 @@ const ShoppingList: React.FC<ShoppingListProps> = ({ ingredients, onRemoveItem }
         {ingredientArray.map((ingredient, index) => (
           <li key={index}>
             {ingredient}
-            <button onClick={() => onRemoveItem(ingredient)}>Remove</button> {/* Remove button */}
+            <button onClick={() => onRemoveItem(ingredient)}>Remove</button>
           </li>
         ))}
       </ul>
