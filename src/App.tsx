@@ -14,8 +14,24 @@ const App: React.FC = () => {
   };
 
   const handleAddToShoppingList = (ingredients: string[]) => {
-    setShoppingList(new Set([...shoppingList, ...ingredients]));
+    const updatedIngredients = removeCaseInsensitiveDuplicates([
+      ...Array.from(shoppingList),
+      ...ingredients
+    ]);
+  
+    setShoppingList(new Set(updatedIngredients));
+    
   };
+  
+  // Removes case-insensitive duplicate ingredients (eg Lime juice, Lime Juice)
+  function removeCaseInsensitiveDuplicates(arr: string[]): string[] {
+    return Array.from(
+      arr.reduce((map, item) => {
+        map.set(item.toLowerCase(), item);
+        return map;
+      }, new Map()).values()
+    );
+  }
 
   return (
     <div>
