@@ -6,7 +6,10 @@ interface ShoppingListProps {
   onRemoveItem: (ingredient: string) => void;
 }
 
-const ShoppingList: React.FC<ShoppingListProps> = ({ ingredients, onRemoveItem }) => {
+const ShoppingList: React.FC<ShoppingListProps> = ({
+  ingredients,
+  onRemoveItem,
+}) => {
   const ingredientArray = Array.from(ingredients);
 
   const handlePrint = () => {
@@ -14,19 +17,27 @@ const ShoppingList: React.FC<ShoppingListProps> = ({ ingredients, onRemoveItem }
   };
 
   return (
-    <div>
-      <h2>Shopping List</h2>
-      <ul className="printable-list">
-        {ingredientArray.map((ingredient, index) => (
-          <li key={index}>
-            {ingredient}
-            <button onClick={() => onRemoveItem(ingredient)}>Remove</button>
-          </li>
-        ))}
-      </ul>
-      {ingredientArray.length > 0 && (
-        <button onClick={handlePrint}>Print Shopping List</button>
-      )}
+    <div className="shopping-list">
+      <div className="title">
+        <h2>Shopping List</h2>
+      </div>
+      <div className="ingredients-container">
+        <ul>
+          {ingredientArray.map((ingredient, index) => (
+            <li key={index}>
+              <span className="ingredient-name">{ingredient}</span>
+              <button onClick={() => onRemoveItem(ingredient)} className="remove-button">
+                remove
+              </button>
+              
+            </li>
+          ))}
+        </ul>
+        </div>
+        {ingredientArray.length > 0 && (
+          <button onClick={handlePrint} className="print-button">Print Shopping List</button>
+        )}
+      
     </div>
   );
 };

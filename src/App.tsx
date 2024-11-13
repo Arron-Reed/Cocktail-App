@@ -4,6 +4,7 @@ import CocktailList from "./components/CocktailList/CocktailList";
 import ShoppingList from "./components/ShoppingList/ShoppingList";
 import Toaster from "./components/Toaster/Toaster";
 import { searchCocktails, Cocktail } from "./services/cocktailApiService";
+import "./App.css";
 
 const App: React.FC = () => {
   const [shoppingList, setShoppingList] = useState<Set<string>>(() => {
@@ -65,17 +66,29 @@ const App: React.FC = () => {
   }, [shoppingList]);
 
   return (
-    <div>
-      <SearchBar onSearch={handleSearch} />
-      <Toaster message={toasterMessage} onHide={hideToaster} />
-      <CocktailList
-        cocktails={cocktails}
-        onAddToShoppingList={handleAddToShoppingList}
-      />
-      <ShoppingList
-        ingredients={shoppingList}
-        onRemoveItem={handleRemoveFromShoppingList}
-      />
+    <div className="app-container">
+      <div className="searchbar-container">
+        <SearchBar onSearch={handleSearch} />
+      </div>
+      <div className="app-container-left">
+        <div className="cocktailList-container">
+          <CocktailList
+            cocktails={cocktails}
+            onAddToShoppingList={handleAddToShoppingList}
+          />
+        </div>
+      </div>
+      <div className="app-container-right">
+        <div className="shopping-list-container">
+          <ShoppingList
+            ingredients={shoppingList}
+            onRemoveItem={handleRemoveFromShoppingList}
+          />
+        </div>
+        <div className="toaster-container">
+          <Toaster message={toasterMessage} onHide={hideToaster} />
+        </div>
+      </div>
     </div>
   );
 };

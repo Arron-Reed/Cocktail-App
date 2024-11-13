@@ -1,6 +1,7 @@
 import React from "react";
 import { Cocktail } from "../../services/cocktailApiService";
 import CocktailCard from "../CocktailCard/CocktailCard";
+import "./CocktailList.css"
 
 interface CocktailListProps {
   cocktails: Cocktail[];
@@ -17,8 +18,6 @@ const CocktailList: React.FC<CocktailListProps> = ({
 
   return (
     <div className="cocktail-list">
-      {cocktails.length}
-
       {cocktails.map((cocktail) => (
         <CocktailCard
           key={cocktail.idDrink}
