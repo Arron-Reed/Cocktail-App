@@ -1,7 +1,7 @@
 .cocktail-card {
   display: flex;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: var(--color3);
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
   margin: 25px 0;
@@ -13,7 +13,7 @@
 }
 
 .cocktail-card img {
-  border-radius: 20px 20px 0 20px;
+  border-radius: 10px 40px 0 10px;
   height: 300px;
 }
 
@@ -32,6 +32,7 @@
 }
 
 .content p {
+    display: flex;
   color: var(--color5);
   font-size: 1.2rem;
 }
@@ -45,7 +46,13 @@
   color: var(--color3);
   border: none;
   border-radius: 15px;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   margin-left: 390px;
+}
+
+.content button:hover {
+  transform: scale(1.05);
+  transition: ease-in-out 0.2s;
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
 }

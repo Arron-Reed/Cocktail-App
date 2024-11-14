@@ -5,6 +5,7 @@
   --color4: #353740;
   --color5: #4c4e57;
   --color6: #5DADE2;
+  --color7: rgb(250, 115, 115, 0.2);
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -12,9 +13,6 @@
 }
 
 .app-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
   background-color: rgb(250, 115, 115, 0.2);
   background-size: cover;
   background-repeat: no-repeat;
@@ -22,4 +20,12 @@
   background-attachment: fixed;
   min-height: 100vh;
   width: 100vw;
+}
+
+
+.app-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
 }
