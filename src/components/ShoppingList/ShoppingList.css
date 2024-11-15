@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  border-radius: 20px;
+  align-items: left;
+  border-radius: 10px;
   background-color: var(--color3);
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
   margin: 25px 0;
@@ -13,6 +13,8 @@
 .shopping-list h2 {
   color: var(--color4);
   font-size: 2.6rem;
+  display: flex;
+  justify-content: center;
 }
 
 .shopping-list .ingredients-container {
@@ -52,12 +54,17 @@
 }
 
 .shopping-list .ingredients-container .remove-button:hover {
-    transform: scale(1.08);
-    transition: ease-in-out 0.2s;
-    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
-    }
+  transform: scale(1.08);
+  transition: ease-in-out 0.2s;
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+}
 
 .shopping-list .print-button {
+  display: flex;
+  justify-content: center;
+}
+
+.shopping-list .print-button button {
   background-color: var(--color6);
   height: 35px;
   width: 200px;
@@ -70,8 +77,25 @@
   cursor: pointer;
 }
 
-.shopping-list .print-button:hover {
-transform: scale(1.05);
-transition: ease-in-out 0.2s;
-box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+.shopping-list .print-button button:hover {
+  transform: scale(1.05);
+  transition: ease-in-out 0.2s;
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media print {
+  button,
+  .app-container-left,
+  .cocktail-card,
+  .toaster,
+  .searchbar-container {
+    display: none;
+  }
+
+  .shopping-list {
+    width: 80vw;
+    margin: 0 auto;
+    box-shadow: none;
+    padding: 20px;
+  }
 }

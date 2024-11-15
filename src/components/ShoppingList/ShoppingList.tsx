@@ -34,10 +34,11 @@ const ShoppingList: React.FC<ShoppingListProps> = ({
           ))}
         </ul>
         </div>
+        <div className="print-button">
         {ingredientArray.length > 0 && (
-          <button onClick={handlePrint} className="print-button">Print Shopping List</button>
+          <button onClick={handlePrint} >Print Shopping List</button>
         )}
-      
+      </div>
     </div>
   );
 };

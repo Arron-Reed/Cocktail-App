@@ -1,33 +1,36 @@
 .toaster {
-    position: fixed;
-    bottom: 20px;
+  position: fixed;
+  bottom: 50px;
+  right: 30px;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: slide-in 0.5s forwards, slide-out 0.5s 4.5s forwards;
+  z-index: 1000;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+@keyframes slide-in {
+  from {
     right: -300px;
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    animation: slide-in 0.5s forwards, slide-out 0.5s 4.5s forwards;
+    opacity: 0;
   }
-  
-  @keyframes slide-in {
-    from {
-      right: -300px;
-      opacity: 0;
-    }
-    to {
-      right: 20px;
-      opacity: 1;
-    }
+  to {
+    right: 20px;
+    opacity: 1;
   }
-  
-  @keyframes slide-out {
-    from {
-      right: 20px;
-      opacity: 1;
-    }
-    to {
-      right: -300px;
-      opacity: 0;
-    }
+}
+
+@keyframes slide-out {
+  from {
+    right: 20px;
+    opacity: 1;
   }
+  to {
+    right: -300px;
+    opacity: 0;
+  }
+}

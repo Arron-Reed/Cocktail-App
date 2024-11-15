@@ -17,17 +17,18 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
   return (
     <div className="searchbar-container">
-      <div className="searchbar">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search for a cocktail..."
-          />
-          <button type="submit">Search</button>
-        </form>
-      </div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search for a cocktail..."
+          className="search-text"
+        />
+        <button type="submit" className="search-button">
+          🔍
+        </button>
+      </form>
     </div>
   );
 };

@@ -12,10 +12,7 @@ const CocktailList: React.FC<CocktailListProps> = ({
   cocktails,
   onAddToShoppingList,
 }) => {
-  if (cocktails.length === 0) {
-    return <p>No cocktails found. Try searching for something else!</p>;
-  }
-
+  
   return (
     <div className="cocktail-list">
       {cocktails.map((cocktail) => (

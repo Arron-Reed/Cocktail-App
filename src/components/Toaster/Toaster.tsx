@@ -9,7 +9,7 @@ interface ToasterProps {
 
 const Toaster: React.FC<ToasterProps> = ({
   message,
-  duration = 3000,
+  duration = 1500,
   onHide,
 }) => {
   useEffect(() => {
