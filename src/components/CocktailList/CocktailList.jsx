@@ -1,14 +1,9 @@
 import React from "react";
-import { Cocktail } from "../../services/cocktailApiService";
 import CocktailCard from "../CocktailCard/CocktailCard";
 import "./CocktailList.css"
 
-interface CocktailListProps {
-  cocktails: Cocktail[];
-  onAddToShoppingList: (ingredients: string[]) => void;
-}
 
-const CocktailList: React.FC<CocktailListProps> = ({
+const CocktailList = ({
   cocktails,
   onAddToShoppingList,
 }) => {

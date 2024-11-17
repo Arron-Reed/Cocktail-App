@@ -1,13 +1,7 @@
 import React, { useEffect } from "react";
 import "./Toaster.css";
 
-interface ToasterProps {
-  message: string;
-  duration?: number;
-  onHide: () => void;
-}
-
-const Toaster: React.FC<ToasterProps> = ({
+const Toaster = ({
   message,
   duration = 1500,
   onHide,

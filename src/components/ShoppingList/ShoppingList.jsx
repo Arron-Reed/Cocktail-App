@@ -1,12 +1,7 @@
 import React from "react";
 import "./ShoppingList.css";
 
-interface ShoppingListProps {
-  ingredients: Set<string>;
-  onRemoveItem: (ingredient: string) => void;
-}
-
-const ShoppingList: React.FC<ShoppingListProps> = ({
+const ShoppingList = ({
   ingredients,
   onRemoveItem,
 }) => {

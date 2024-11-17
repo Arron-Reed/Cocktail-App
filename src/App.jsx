@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from "react";
+import { html, render } from "lit-html";
+import { searchCocktails } from "./services/cocktailApiService";
+import "./App.css";
+
 import SearchBar from "./components/SearchBar/SearchBar";
 import CocktailList from "./components/CocktailList/CocktailList";
 import ShoppingList from "./components/ShoppingList/ShoppingList";
 import Toaster from "./components/Toaster/Toaster";
-import { searchCocktails, Cocktail } from "./services/cocktailApiService";
-import "./App.css";
 
-const App: React.FC = () => {
-  const [shoppingList, setShoppingList] = useState<Set<string>>(() => {
+const App = () => {
+  const [shoppingList, setShoppingList] = useState(() => {
     const savedList = localStorage.getItem("shoppingList");
     return savedList ? new Set(JSON.parse(savedList)) : new Set();
   });
-  const [cocktails, setCocktails] = useState<Cocktail[]>([]);
+  const [cocktails, setCocktails] = useState([]);
   const [toasterMessage, setToasterMessage] = useState("");
 
-  const handleSearch = async (query: string) => {
+  const handleSearch = async (query) => {
     setToasterMessage("Searching...");
     const results = await searchCocktails(query);
     if (results && results.length > 0) {
@@ -26,7 +27,7 @@ const App: React.FC = () => {
     }
   };
 
-  const handleAddToShoppingList = (ingredients: string[]) => {
+  const handleAddToShoppingList = (ingredients) => {
     const updatedIngredients = removeCaseInsensitiveDuplicates([
       ...Array.from(shoppingList),
       ...ingredients,
@@ -35,15 +36,15 @@ const App: React.FC = () => {
     setToasterMessage("Ingredients added to shopping list.");
   };
 
-  const handleRemoveFromShoppingList = (ingredient: string) => {
+  const handleRemoveFromShoppingList = (ingredient) => {
     const updatedList = new Set(shoppingList);
     updatedList.delete(ingredient);
     setShoppingList(updatedList);
     setToasterMessage(`${ingredient} removed from shopping list.`);
   };
 
-  // Removes case-insensitive duplicate ingredients (eg Lime juice, Lime Juice)
-  function removeCaseInsensitiveDuplicates(arr: string[]): string[] {
+  // Removes case-insensitive duplicate ingredients (e.g., Lime juice, Lime Juice)
+  function removeCaseInsensitiveDuplicates(arr) {
     return Array.from(
       arr
         .reduce((map, item) => {

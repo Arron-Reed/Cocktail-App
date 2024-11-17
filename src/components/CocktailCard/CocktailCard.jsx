@@ -1,22 +1,16 @@
 import React from "react";
-import { Cocktail } from "../../services/cocktailApiService";
 import "./CocktailCard.css";
 
-interface CocktailCardProps {
-  cocktail: Cocktail;
-  onAddToShoppingList: (ingredients: string[]) => void;
-}
-
-const CocktailCard: React.FC<CocktailCardProps> = ({
+const CocktailCard = ({
   cocktail,
   onAddToShoppingList,
 }) => {
   const ingredients = Object.keys(cocktail)
     .filter(
       (key) =>
-        key.startsWith("strIngredient") && cocktail[key as keyof Cocktail]
+        key.startsWith("strIngredient") && cocktail[key]
     )
-    .map((key) => cocktail[key as keyof Cocktail] as string);
+    .map((key) => cocktail[key]);
 
   return (
     <div className="cocktail-card">
