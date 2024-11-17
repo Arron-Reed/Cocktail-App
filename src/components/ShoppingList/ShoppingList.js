@@ -9,8 +9,11 @@ export const ShoppingList = ({ ingredients = new Set(), onRemoveItem }) => {
     window.print();
   };
 
+  const shoppingListClass =
+    ingredientArray.length === 0 ? "shopping-list hidden" : "shopping-list";
+
   return html`
-    <div class="shopping-list">
+    <div class="${shoppingListClass}">
       <div class="title">
         <h2>Shopping List</h2>
       </div>
