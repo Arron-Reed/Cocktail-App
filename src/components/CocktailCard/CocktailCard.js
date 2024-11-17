@@ -1,15 +1,10 @@
 import { html } from "lit-html";
+import { component } from "haunted";
 import "./CocktailCard.css";
 
-export const CocktailCard = ({
-  cocktail,
-  onAddToShoppingList,
-}) => {
+export const CocktailCard = ({ cocktail, onAddToShoppingList }) => {
   const ingredients = Object.keys(cocktail)
-    .filter(
-      (key) =>
-        key.startsWith("strIngredient") && cocktail[key]
-    )
+    .filter((key) => key.startsWith("strIngredient") && cocktail[key])
     .map((key) => cocktail[key]);
 
   return html`
@@ -26,4 +21,6 @@ export const CocktailCard = ({
       </div>
     </div>
   `;
-};
+}
+
+customElements.define("cocktail-card", component(CocktailCard, { useShadowDOM: false }));

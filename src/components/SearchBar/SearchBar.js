@@ -1,11 +1,12 @@
-import { html } from 'lit-html';
-import './SearchBar.css';
+import { html } from "lit-html";
+import { component, useState } from "haunted";
+import "./SearchBar.css";
 
 export const SearchBar = ({ onSearch }) => {
-  let query = '';
+  const [query, setQuery] = useState("");
 
   const handleInputChange = (e) => {
-    query = e.target.value;
+    setQuery(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -31,4 +32,6 @@ export const SearchBar = ({ onSearch }) => {
       </form>
     </div>
   `;
-};
+}
+
+customElements.define("search-bar", component(SearchBar, { useShadowDOM: false }));

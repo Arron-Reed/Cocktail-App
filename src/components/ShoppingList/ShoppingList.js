@@ -1,7 +1,8 @@
 import { html } from "lit-html";
+import { component } from "haunted";
 import "./ShoppingList.css";
 
-export const ShoppingList = ({ ingredients, onRemoveItem }) => {
+export const ShoppingList = ({ ingredients = new Set(), onRemoveItem }) => {
   const ingredientArray = Array.from(ingredients);
 
   const handlePrint = () => {
@@ -16,7 +17,7 @@ export const ShoppingList = ({ ingredients, onRemoveItem }) => {
       <div class="ingredients-container">
         <ul>
           ${ingredientArray.map(
-            (ingredient, index) => html`
+            (ingredient) => html`
               <li>
                 <span class="ingredient-name">${ingredient}</span>
                 <button
@@ -32,9 +33,14 @@ export const ShoppingList = ({ ingredients, onRemoveItem }) => {
       </div>
       <div class="print-button">
         ${ingredientArray.length > 0
-          ? html` <button @click="${handlePrint}">Print Shopping List</button> `
+          ? html`<button @click="${handlePrint}">Print Shopping List</button>`
           : ""}
       </div>
     </div>
   `;
 };
+
+customElements.define(
+  "shopping-list",
+  component(ShoppingList, { useShadowDOM: false })
+);
