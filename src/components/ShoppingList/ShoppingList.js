@@ -8,12 +8,9 @@ export const ShoppingList = ({ ingredients = new Set(), onRemoveItem }) => {
   const handlePrint = () => {
     window.print();
   };
-
-  const shoppingListClass =
-    ingredientArray.length === 0 ? "shopping-list hidden" : "shopping-list";
-
+  
   return html`
-    <div class="${shoppingListClass}">
+    <div class="shopping-list ${ingredientArray.length === 0 ? "hidden" : ""}">
       <div class="title">
         <h2>Shopping List</h2>
       </div>
@@ -26,6 +23,7 @@ export const ShoppingList = ({ ingredients = new Set(), onRemoveItem }) => {
                 <button
                   @click="${() => onRemoveItem(ingredient)}"
                   class="remove-button"
+                  aria-label="Remove ${ingredient} from shopping list"
                 >
                   remove
                 </button>
@@ -34,11 +32,15 @@ export const ShoppingList = ({ ingredients = new Set(), onRemoveItem }) => {
           )}
         </ul>
       </div>
-      <div class="print-button">
-        ${ingredientArray.length > 0
-          ? html`<button @click="${handlePrint}">Print Shopping List</button>`
-          : ""}
-      </div>
+      ${ingredientArray.length > 0
+        ? html`
+            <div class="print-button">
+              <button @click="${handlePrint}" aria-label="Print shopping list">
+                Print Shopping List
+              </button>
+            </div>
+          `
+        : ""}
     </div>
   `;
 };

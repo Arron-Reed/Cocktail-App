@@ -4,16 +4,14 @@ import "./Toaster.css";
 
 export const Toaster = ({ message, duration = 1500, onHide }) => {
   useEffect(() => {
-    if (message) {
-      const timer = setTimeout(() => {
-        onHide();
-      }, duration);
+    if (!message) return;
 
-      return () => clearTimeout(timer);
-    }
-  }, [message, duration]);
+    const timer = setTimeout(onHide, duration);
 
-  return message ? html`<div class="toaster">${message}</div>` : html``;
+    return () => clearTimeout(timer);
+  }, [message, duration, onHide]);
+
+  return message ? html`<div class="toaster">${message}</div>` : null;
 };
 
 customElements.define("toaster-message", component(Toaster));

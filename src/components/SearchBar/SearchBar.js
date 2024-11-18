@@ -5,14 +5,13 @@ import "./SearchBar.css";
 export const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState("");
 
-  const handleInputChange = (e) => {
-    setQuery(e.target.value);
-  };
+  const handleInputChange = (e) => setQuery(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (query.trim()) {
-      onSearch(query);
+    const trimmedQuery = query.trim();
+    if (trimmedQuery) {
+      onSearch(trimmedQuery);
     }
   };
 
@@ -25,13 +24,14 @@ export const SearchBar = ({ onSearch }) => {
           @input="${handleInputChange}"
           placeholder="Search for a cocktail..."
           class="search-text"
+          aria-label="Search for a cocktail"
         />
-        <button type="submit" class="search-button">
+        <button type="submit" class="search-button" aria-label="Search">
           🔍
         </button>
       </form>
     </div>
   `;
-}
+};
 
 customElements.define("search-bar", component(SearchBar, { useShadowDOM: false }));

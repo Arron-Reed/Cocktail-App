@@ -9,7 +9,7 @@ import { Toaster } from "./components/Toaster/Toaster";
 
 const App = () => {
   const [shoppingList, setShoppingList] = useState(
-    new Set(JSON.parse(localStorage.getItem("shoppingList")) || [])
+    new Set(JSON.parse(localStorage.getItem("shoppingList") || "[]"))
   );
   const [cocktails, setCocktails] = useState([]);
   const [toasterMessage, setToasterMessage] = useState("");
@@ -19,44 +19,32 @@ const App = () => {
     localStorage.setItem("shoppingList", JSON.stringify([...shoppingList]));
   }, [shoppingList]);
 
+
   const handleSearch = async (query) => {
     setToasterMessage("Searching...");
     const results = await searchCocktails(query);
-    if (results && results.length > 0) {
-      setCocktails(results);
-      setToasterMessage("Here are the results.");
-    } else {
-      setCocktails([]);
-      setToasterMessage("No results found.");
-    }
+    setCocktails(results || []);
+    setToasterMessage(results.length ? "Here are the results." : "No results found.");
   };
 
+  // Removes duplicate that are case insensitive (lime juice or Lime juice)
+  const capitalizeFirstLetter = (str) =>
+    str.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
+  
   const handleAddToShoppingList = (ingredients) => {
-    const updatedIngredients = removeCaseInsensitiveDuplicates([
-      ...Array.from(shoppingList),
-      ...ingredients,
+    const updatedList = new Set([
+      ...shoppingList,
+      ...ingredients.map(capitalizeFirstLetter),
     ]);
-    setShoppingList(new Set(updatedIngredients));
+    setShoppingList(updatedList);
     setToasterMessage("Ingredients added to shopping list.");
   };
-
+  
   const handleRemoveFromShoppingList = (ingredient) => {
-    const updatedList = new Set(shoppingList);
-    updatedList.delete(ingredient);
-    setShoppingList(updatedList);
-    setToasterMessage(`${ingredient} removed from shopping list.`);
-  };
-
-  // Remove duplicates case-insensitively
-  const removeCaseInsensitiveDuplicates = (arr) => {
-    return Array.from(
-      arr
-        .reduce((map, item) => {
-          map.set(item.toLowerCase(), item);
-          return map;
-        }, new Map())
-        .values()
-    );
+    const formattedIngredient = capitalizeFirstLetter(ingredient);
+    shoppingList.delete(formattedIngredient);
+    setShoppingList(new Set(shoppingList));
+    setToasterMessage(`${formattedIngredient} removed from shopping list.`);
   };
 
   const hideToaster = () => setToasterMessage("");
@@ -93,7 +81,6 @@ const App = () => {
 
 customElements.define("cocktail-app", component(App, { useShadowDOM: false }));
 
-const root = document.getElementById("root");
-render(html`<cocktail-app></cocktail-app>`, root);
+render(html`<cocktail-app></cocktail-app>`, document.getElementById("root"));
 
 export default App;
