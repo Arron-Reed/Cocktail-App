@@ -1,11 +1,12 @@
-import { html, render } from "lit-html";
+import { html } from "lit-html";
 import { component, useState, useEffect } from "haunted";
 import { searchCocktails } from "./services/cocktailApiService";
 import "./App.css";
-import { SearchBar } from "./components/SearchBar/SearchBar";
-import { CocktailList } from "./components/CocktailList/CocktailList";
-import { ShoppingList } from "./components/ShoppingList/ShoppingList";
-import { Toaster } from "./components/Toaster/Toaster";
+import "./components/modal/Modal.css";
+import { SearchBar } from "./components/searchBar/SearchBar";
+import { CocktailList } from "./components/cocktailList/CocktailList";
+import { ShoppingList } from "./components/shoppingList/ShoppingList";
+import { Toaster } from "./components/toaster/Toaster";
 
 const App = () => {
   const [shoppingList, setShoppingList] = useState(
@@ -13,24 +14,25 @@ const App = () => {
   );
   const [cocktails, setCocktails] = useState([]);
   const [toasterMessage, setToasterMessage] = useState("");
+  const [showShoppingListModal, setShowShoppingListModal] = useState(false);
 
-  // Update local storage when shoppingList changes
+  // Persist shopping list in localStorage
   useEffect(() => {
     localStorage.setItem("shoppingList", JSON.stringify([...shoppingList]));
   }, [shoppingList]);
-
 
   const handleSearch = async (query) => {
     setToasterMessage("Searching...");
     const results = await searchCocktails(query);
     setCocktails(results || []);
-    setToasterMessage(results.length ? "Here are the results." : "No results found.");
+    setToasterMessage(
+      results.length ? "Here are the results." : "No results found."
+    );
   };
 
-  // Removes duplicate that are case insensitive (lime juice or Lime juice)
   const capitalizeFirstLetter = (str) =>
     str.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
-  
+
   const handleAddToShoppingList = (ingredients) => {
     const updatedList = new Set([
       ...shoppingList,
@@ -38,8 +40,9 @@ const App = () => {
     ]);
     setShoppingList(updatedList);
     setToasterMessage("Ingredients added to shopping list.");
+    setShowShoppingListModal(true);
   };
-  
+
   const handleRemoveFromShoppingList = (ingredient) => {
     const formattedIngredient = capitalizeFirstLetter(ingredient);
     shoppingList.delete(formattedIngredient);
@@ -49,38 +52,53 @@ const App = () => {
 
   const hideToaster = () => setToasterMessage("");
 
+  const closeShoppingListModal = () => setShowShoppingListModal(false);
+
+  const handlePrint = () => {
+    window.print();
+  };
+
+  const shoppingListContent = html`
+    ${ShoppingList({
+      items: shoppingList,
+      onRemoveItem: handleRemoveFromShoppingList,
+      onPrint: handlePrint,
+    })}
+  `;
+
   return html`
     <div class="app-container">
+      <header>
+        <button class="shopping-list-button" @click="${() => setShowShoppingListModal(true)}">
+          Shopping List
+        </button>
+      </header>
       <div class="searchbar-container">
         ${SearchBar({ onSearch: handleSearch })}
       </div>
       <div class="app-content">
-        <div class="app-container-left">
+        
           <div class="cocktailList-container">
             ${CocktailList({
               cocktails,
               onAddToShoppingList: handleAddToShoppingList,
             })}
           </div>
-        </div>
-        <div class="app-container-right">
-          <div class="shopping-list-container">
-            ${ShoppingList({
-              ingredients: shoppingList,
-              onRemoveItem: handleRemoveFromShoppingList,
-            })}
-          </div>
-        </div>
+        
         <div class="toaster-container">
           ${Toaster({ message: toasterMessage, onHide: hideToaster })}
         </div>
       </div>
+      <reusable-modal
+        .show="${showShoppingListModal}"
+        .title="Shopping List"
+        .content="${shoppingListContent}"
+        .onClose="${closeShoppingListModal}"
+      ></reusable-modal>
     </div>
   `;
 };
 
 customElements.define("cocktail-app", component(App, { useShadowDOM: false }));
-
-render(html`<cocktail-app></cocktail-app>`, document.getElementById("root"));
 
 export default App;

@@ -1,6 +1,6 @@
 import { html } from "lit-html";
 import { component } from "haunted";
-import "../CocktailCard/CocktailCard";
+import "../cocktailCard/CocktailCard";
 import "./CocktailList.css";
 
 export const CocktailList = ({ cocktails = [], onAddToShoppingList }) => {
