@@ -12,3 +12,15 @@ export const searchCocktails = async (query) => {
     return [];
   }
 };
+
+const BASE_INGREDIENT_IMAGE_URL = "https://www.thecocktaildb.com/images/ingredients/";
+
+export const fetchIngredientThumbnails = async (ingredients) => {
+
+  return ingredients.map(
+    (ingredient) => ({
+      name: ingredient,
+      thumbnail: `${BASE_INGREDIENT_IMAGE_URL}${encodeURIComponent(ingredient)}-Small.png`,
+    })
+  );
+};

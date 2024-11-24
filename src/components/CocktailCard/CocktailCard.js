@@ -3,12 +3,20 @@ import { component, useState } from "haunted";
 import "../modal/Modal";
 import "./CocktailCard.css";
 import { getIngredientsWithMeasurements } from "../../utils";
+import { fetchIngredientThumbnails } from "../../services/cocktailApiService";
 
 export const CocktailCard = ({ cocktail, onAddToShoppingList }) => {
   const [showModal, setShowModal] = useState(false);
+  const [ingredientDetails, setIngredientDetails] = useState([]);
 
-  const openModal = (e) => {
-    e.stopPropagation(); // Prevent bubbling to parent
+  const openModal = async (e) => {
+    e.stopPropagation();
+    if (!ingredientDetails.length) {
+      const thumbnails = await fetchIngredientThumbnails(
+        ingredientsWithMeasurements.map((item) => item.ingredient)
+      );
+      setIngredientDetails(thumbnails);
+    }
     setShowModal(true);
   };
 
@@ -22,25 +30,37 @@ export const CocktailCard = ({ cocktail, onAddToShoppingList }) => {
 
   const ingredientsWithMeasurements = getIngredientsWithMeasurements(cocktail);
 
+  // HTML section that is passed to the modal showing all Cocktail Details
   const cocktailDetails = html`
-    <div>
-      <img
-        src="${cocktail.strDrinkThumb}"
-        alt="${cocktail.strDrink}"
-        class="modal-image"
-      />
+    <div class="cocktail-details">
+      <div class="image">
+        <img
+          src="${cocktail.strDrinkThumb}"
+          alt="${cocktail.strDrink}"
+          class="modal-image"
+        />
+      </div>
       <p>Category: ${cocktail.strCategory}</p>
       <p>Glass: ${cocktail.strGlass}</p>
       <p>Instructions: ${cocktail.strInstructions}</p>
       <h3>Ingredients:</h3>
       <ul>
-        ${ingredientsWithMeasurements.map(
-          (item) => html`<li>${item.measurement} ${item.ingredient}</li>`
-        )}
+        ${ingredientsWithMeasurements.map((item, index) => {
+          const thumbnail = ingredientDetails[index]?.thumbnail || "";
+          return html`<li>
+            <img
+              src="${thumbnail}"
+              alt="${item.ingredient}"
+              class="ingredient-thumbnail"
+            />
+            ${item.measurement} ${item.ingredient}
+          </li>`;
+        })}
       </ul>
     </div>
   `;
 
+  // HTML Section that shows in the cocktail list on the main page
   return html`
     <div class="cocktail-card" @click="${handleCardClick}">
       <div class="image">

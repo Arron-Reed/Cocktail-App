@@ -2,14 +2,25 @@ import { html } from "lit-html";
 import { component } from "haunted";
 import "./ShoppingList.css";
 
+// Retrieve shopping list from localStorage
+export const getShoppingList = () => {
+  const storedList = localStorage.getItem("shoppingList");
+  return new Set(JSON.parse(storedList || "[]"));
+};
+
+// Save shopping list to localStorage
+export const saveShoppingList = (items) => {
+  localStorage.setItem("shoppingList", JSON.stringify([...items]));
+};
+
 export const ShoppingList = ({ items, onRemoveItem, onPrint }) => {
   return html`
-    <div>
+    <div class="shopping-list">
       <ul>
         ${Array.from(items).map(
           (item) =>
             html`<li>
-              ${item}
+              <span class="ingredient-name">${item}</span>
               <button
                 @click="${() => onRemoveItem(item)}"
                 class="remove-button"
@@ -19,9 +30,9 @@ export const ShoppingList = ({ items, onRemoveItem, onPrint }) => {
             </li>`
         )}
       </ul>
-      <button @click="${onPrint}" class="print-button">
-        Print Shopping List
-      </button>
+      <div class="print-button">
+        <button @click="${onPrint}">Print Shopping List</button>
+      </div>
     </div>
   `;
 };

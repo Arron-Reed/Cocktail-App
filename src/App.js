@@ -5,20 +5,18 @@ import "./App.css";
 import "./components/modal/Modal.css";
 import { SearchBar } from "./components/searchBar/SearchBar";
 import { CocktailList } from "./components/cocktailList/CocktailList";
-import { ShoppingList } from "./components/shoppingList/ShoppingList";
+import { ShoppingList, getShoppingList, saveShoppingList } from "./components/shoppingList/ShoppingList";
 import { Toaster } from "./components/toaster/Toaster";
 
 const App = () => {
-  const [shoppingList, setShoppingList] = useState(
-    new Set(JSON.parse(localStorage.getItem("shoppingList") || "[]"))
-  );
+  const [shoppingList, setShoppingList] = useState(getShoppingList());
   const [cocktails, setCocktails] = useState([]);
   const [toasterMessage, setToasterMessage] = useState("");
   const [showShoppingListModal, setShowShoppingListModal] = useState(false);
 
-  // Persist shopping list in localStorage
+  // Sync shopping list with localStorage
   useEffect(() => {
-    localStorage.setItem("shoppingList", JSON.stringify([...shoppingList]));
+    saveShoppingList(shoppingList);
   }, [shoppingList]);
 
   const handleSearch = async (query) => {
@@ -77,14 +75,12 @@ const App = () => {
         ${SearchBar({ onSearch: handleSearch })}
       </div>
       <div class="app-content">
-        
-          <div class="cocktailList-container">
-            ${CocktailList({
-              cocktails,
-              onAddToShoppingList: handleAddToShoppingList,
-            })}
-          </div>
-        
+        <div class="cocktailList-container">
+          ${CocktailList({
+            cocktails,
+            onAddToShoppingList: handleAddToShoppingList,
+          })}
+        </div>
         <div class="toaster-container">
           ${Toaster({ message: toasterMessage, onHide: hideToaster })}
         </div>
