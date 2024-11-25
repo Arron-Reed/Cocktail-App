@@ -70,7 +70,7 @@ export const CocktailCard = ({ cocktail, onAddToShoppingList }) => {
         <h3>${cocktail.strDrink}</h3>
         <p>${cocktail.strInstructions}</p>
         <div class="button-group">
-          <button
+          <button class="button secondary-button"
             @click="${() => {
               onAddToShoppingList(
                 ingredientsWithMeasurements.map((item) => item.ingredient)
@@ -79,7 +79,7 @@ export const CocktailCard = ({ cocktail, onAddToShoppingList }) => {
           >
             Add to Shopping List
           </button>
-          <button @click="${openModal}">View Details</button>
+          <button @click="${openModal}" class="button primary-button">View Details</button>
         </div>
       </div>
       <reusable-modal

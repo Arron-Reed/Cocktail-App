@@ -16,6 +16,8 @@ export const saveShoppingList = (items) => {
 export const ShoppingList = ({ items, onRemoveItem, onPrint }) => {
   return html`
     <div class="shopping-list">
+     <h2>Shopping List</h2>
+     <div class="ingredients-container">
       <ul>
         ${Array.from(items).map(
           (item) =>
@@ -30,6 +32,7 @@ export const ShoppingList = ({ items, onRemoveItem, onPrint }) => {
             </li>`
         )}
       </ul>
+      </div>
       <div class="print-button">
         <button @click="${onPrint}">Print Shopping List</button>
       </div>

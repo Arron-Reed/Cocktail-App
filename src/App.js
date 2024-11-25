@@ -2,10 +2,15 @@ import { html } from "lit-html";
 import { component, useState, useEffect } from "haunted";
 import { searchCocktails } from "./services/cocktailApiService";
 import "./App.css";
+import "./styles.css";
 import "./components/modal/Modal.css";
 import { SearchBar } from "./components/searchBar/SearchBar";
 import { CocktailList } from "./components/cocktailList/CocktailList";
-import { ShoppingList, getShoppingList, saveShoppingList } from "./components/shoppingList/ShoppingList";
+import {
+  ShoppingList,
+  getShoppingList,
+  saveShoppingList,
+} from "./components/shoppingList/ShoppingList";
 import { Toaster } from "./components/toaster/Toaster";
 
 const App = () => {
@@ -67,13 +72,16 @@ const App = () => {
   return html`
     <div class="app-container">
       <header>
-        <button class="shopping-list-button" @click="${() => setShowShoppingListModal(true)}">
+        <div class="sb-container">
+          ${SearchBar({ onSearch: handleSearch })}
+        </div>
+        <button
+          class="shopping-list-button"
+          @click="${() => setShowShoppingListModal(true)}"
+        >
           Shopping List
         </button>
       </header>
-      <div class="searchbar-container">
-        ${SearchBar({ onSearch: handleSearch })}
-      </div>
       <div class="app-content">
         <div class="cocktailList-container">
           ${CocktailList({

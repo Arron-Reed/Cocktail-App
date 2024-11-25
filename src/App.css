@@ -1,34 +1,27 @@
-* {
-  --color1: #fa7373;
-  --color2: #ced1d8;
-  --color3: #fff;
-  --color4: #353740;
-  --color5: #4c4e57;
-  --color6: #5DADE2;
-  --color7: rgb(250, 115, 115, 0.2);
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Roboto, sans-serif;
-}
-
 .app-container {
-  background-color: rgb(250, 115, 115, 0.2);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
+  background-color: var(--color7);
   min-height: 100vh;
   width: 100vw;
 }
 
-.app-content {
+header {
+  position: relative;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.sb-container {
+  position: absolute; 
+  display: flex;
   justify-content: center;
 }
 
 .shopping-list-button {
+  position: absolute;
+  right: 20px;
   background-color: var(--color1);
   color: var(--color3);
   font-size: 1.2rem;
@@ -37,5 +30,14 @@
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+  margin-right: 50px;
 }
+
+.app-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
 
