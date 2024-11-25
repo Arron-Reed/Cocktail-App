@@ -33,30 +33,56 @@ export const CocktailCard = ({ cocktail, onAddToShoppingList }) => {
   // HTML section that is passed to the modal showing all Cocktail Details
   const cocktailDetails = html`
     <div class="cocktail-details">
-      <div class="image">
-        <img
-          src="${cocktail.strDrinkThumb}"
-          alt="${cocktail.strDrink}"
-          class="modal-image"
-        />
+      <div class="details-header">
+        <h2>${cocktail.strDrink}</h2>
+        <hr class="header-hr" />
+        <div class="category-block">
+          <div class="category"><p>${cocktail.strCategory}</p></div>
+          <div class="glass"><p>${cocktail.strGlass}</p></div>
+          <div class="alcoholic"><p>${cocktail.strAlcoholic}</p></div>
+        </div>
       </div>
-      <p>Category: ${cocktail.strCategory}</p>
-      <p>Glass: ${cocktail.strGlass}</p>
-      <p>Instructions: ${cocktail.strInstructions}</p>
-      <h3>Ingredients:</h3>
-      <ul>
-        ${ingredientsWithMeasurements.map((item, index) => {
-          const thumbnail = ingredientDetails[index]?.thumbnail || "";
-          return html`<li>
+
+      <div class="details-content">
+        <div class="details-left">
+          <h3>Ingredients</h3>
+          <div class="details-ingredients">
+            <ul>
+              ${ingredientsWithMeasurements.map((item, index) => {
+                const thumbnail = ingredientDetails[index]?.thumbnail || "";
+                return html`<li class="ingredients">
+                  <div class="ingredient-left">
+                    <img
+                      src="${thumbnail}"
+                      alt="${item.ingredient}"
+                      class="ingredient-thumbnail"
+                    />
+                  </div>
+                  <div class="ingredient-right">
+                    <p>${item.measurement}</p>
+                    <p class="item">${item.ingredient}</p>
+                  </div>
+                </li>`;
+              })}
+            </ul>
+          </div>
+        </div>
+        <div class="details-line"></div>
+        <div class="details-right">
+          <div class="image">
             <img
-              src="${thumbnail}"
-              alt="${item.ingredient}"
-              class="ingredient-thumbnail"
+              src="${cocktail.strDrinkThumb}"
+              alt="${cocktail.strDrink}"
+              class="modal-image"
             />
-            ${item.measurement} ${item.ingredient}
-          </li>`;
-        })}
-      </ul>
+          </div>
+        </div>
+      </div>
+      <hr class="header-hr" />
+      <div class="details-instructions">
+        <h3>Instructions</h3>
+        <p>${cocktail.strInstructions}</p>
+      </div>
     </div>
   `;
 
@@ -67,10 +93,11 @@ export const CocktailCard = ({ cocktail, onAddToShoppingList }) => {
         <img src="${cocktail.strDrinkThumb}" alt="${cocktail.strDrink}" />
       </div>
       <div class="content">
-        <h3>${cocktail.strDrink}</h3>
+        <h2>${cocktail.strDrink}</h2>
         <p>${cocktail.strInstructions}</p>
         <div class="button-group">
-          <button class="button secondary-button"
+          <button
+            class="button secondary-button"
             @click="${() => {
               onAddToShoppingList(
                 ingredientsWithMeasurements.map((item) => item.ingredient)
@@ -79,7 +106,9 @@ export const CocktailCard = ({ cocktail, onAddToShoppingList }) => {
           >
             Add to Shopping List
           </button>
-          <button @click="${openModal}" class="button primary-button">View Details</button>
+          <button @click="${openModal}" class="button primary-button">
+            View Details
+          </button>
         </div>
       </div>
       <reusable-modal

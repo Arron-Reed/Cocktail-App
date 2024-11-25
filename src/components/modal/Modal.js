@@ -27,7 +27,6 @@ export const Modal = ({ show, title, content, onClose }) => {
     <div class="modal-overlay" @click="${handleOverlayClick}">
       <div class="modal-content">
         <button class="modal-close" @click="${onClose}">&times</button>
-        <h2>${title}</h2>
         <div class="modal-body">${content}</div>
       </div>
     </div>

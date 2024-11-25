@@ -33,11 +33,6 @@
   position: relative;
 }
 
-.content h3 {
-  color: var(--color4);
-  font-size: 2rem;
-}
-
 .content p {
   color: var(--color5);
   font-size: 1rem;
@@ -50,12 +45,115 @@
 }
 
 .content .button-group {
-display: flex;
-justify-content: end;
+  display: flex;
+  justify-content: end;
 }
 
+.cocktail-details {
+  background-color: var(--color8);
+}
 
-.cocktail-details .ingredient-thumbnail {
-  width: 80px;
-  height: 80px;
+.category-block {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.category {
+  background-color: #a3d8f4;
+  width: 150px;
+  padding: 3px 0;
+  margin: 0 10px;
+  border-radius: 15px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.glass {
+  background-color: #ffc8a2;
+  width: 150px;
+  padding: 3px 0;
+  margin: 0 10px;
+  border-radius: 15px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.alcoholic {
+  background-color: #a8d5ba;
+  width: 150px;
+  padding: 3px 0;
+  margin: 0 10px;
+  border-radius: 15px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.details-content {
+  display: flex;
+  height: 100%;
+}
+
+.details-content .details-left {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.details-ingredients ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: start;
+}
+
+.ingredients {
+  display: flex;
+  align-items: center;
+}
+
+.details-ingredients ul img {
+  width: 60px;
+  height: 60px;
+  margin: 0 10px 5px 0;
+}
+
+.details-ingredients ul p {
+  display: flex;
+  font-size: 0.9rem;
+}
+
+.details-ingredients ul .item {
+  font-size: 1.25rem;
+}
+
+.details-line {
+  background-color: black;
+  width: 1px;
+  margin: 30px 0;
+}
+
+.details-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+}
+
+.details-right .image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.details-right .image img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 50%;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.details-instructions p {
+  font-size: 1.2rem;
+  padding: 20px 30px;
 }
