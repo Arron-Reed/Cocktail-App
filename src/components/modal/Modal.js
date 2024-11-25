@@ -1,8 +1,20 @@
 import { html } from "lit-html";
-import { component } from "haunted";
+import { component, useEffect } from "haunted";
 import "./Modal.css";
 
 export const Modal = ({ show, title, content, onClose }) => {
+  useEffect(() => {
+    if (show) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [show]);
+  
   if (!show) return null;
 
   const handleOverlayClick = (e) => {
