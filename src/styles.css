@@ -60,3 +60,38 @@ h2 {
   color: var(--color4);
   font-size: 2rem;
 }
+
+@media only screen and (max-width: 479px) {
+  .button {
+    height: 20px;
+    width: 60px;
+    max-width: 80px;
+    font-size: 0.5rem;
+  }
+  
+  .primary-button {
+    background-color: var(--color1);
+    margin-right: 2px;
+  }
+  
+  .secondary-button {
+    background-color: var(--color2);
+    margin-right: 5px;
+    /*    color: var(--color1);
+      border: 3px, solid, var(--color1);
+      */
+  }
+  
+  hr {
+    color: var(--color2);
+    margin: 15px 0;
+  }
+  
+  h3 {
+    font-size: 1rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+}

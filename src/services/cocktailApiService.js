@@ -6,6 +6,7 @@ export const searchCocktails = async (query) => {
     if (!response.ok) throw new Error(`Failed to fetch: ${response.statusText}`);
     
     const { drinks } = await response.json();
+    console.log(drinks)
     return drinks || [];
   } catch (error) {
     console.error("Failed to fetch cocktails:", error);

@@ -97,3 +97,44 @@
     padding: 20px;
   }
 }
+
+@media only screen and (max-width: 479px) {
+  .shopping-list {
+    margin: 5px 0;
+    padding: 10px 20px;
+  }
+  
+  .shopping-list h2 {
+    font-size: 1.8rem;
+  }
+  
+  .shopping-list .ingredients-container ul {
+    list-style-type: none;
+    color: var(--color5);
+    font-size: 1.2rem;
+    padding: 20px 0;
+  }
+
+  .shopping-list .print-button button {
+    height: 25px;
+    width: 180px;
+    font-size: 0.8rem;
+  }
+  
+  @media print {
+    button,
+    .app-container-left,
+    .cocktail-card,
+    .toaster,
+    .searchbar-container {
+      display: none;
+    }
+  
+    .shopping-list {
+      width: 80vw;
+      margin: 0 auto;
+      box-shadow: none;
+      padding: 20px;
+    }
+  }
+}

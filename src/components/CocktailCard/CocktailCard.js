@@ -104,7 +104,7 @@ export const CocktailCard = ({ cocktail, onAddToShoppingList }) => {
               );
             }}"
           >
-            Add to Shopping List
+            Shopping List
           </button>
           <button @click="${openModal}" class="button primary-button">
             View Details
