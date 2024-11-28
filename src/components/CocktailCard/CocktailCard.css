@@ -177,8 +177,8 @@
 
   .content p {
     color: var(--color5);
-    font-size: 0.7rem;
-    line-height: 0.7rem;
+    font-size: 0.8rem;
+    line-height: 0.8rem;
     margin-right: -10px;
     line-clamp: 4;
     -webkit-line-clamp: 4;
@@ -189,7 +189,7 @@
   }
 
   .category-block p {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
   
   .category {

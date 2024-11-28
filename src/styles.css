@@ -63,10 +63,13 @@ h2 {
 
 @media only screen and (max-width: 479px) {
   .button {
+    display: flex;
+    justify-content: center;
     height: 20px;
     width: 60px;
     max-width: 80px;
     font-size: 0.5rem;
+    align-items: center;
   }
   
   .primary-button {

@@ -72,9 +72,7 @@ const App = () => {
   return html`
     <div class="app-container">
       <header>
-        <div class="sb-container">
-          ${SearchBar({ onSearch: handleSearch })}
-        </div>
+        <div class="sb-container">${SearchBar({ onSearch: handleSearch })}</div>
         <button
           class="shopping-list-button"
           @click="${() => setShowShoppingListModal(true)}"
