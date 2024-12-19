@@ -1,0 +1,57 @@
+.app-container {
+    background-color: var(--color7);
+    min-height: 100vh;
+    width: 100vw;
+  }
+  
+  header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    margin-bottom: 20px;
+  }
+  
+  .sb-container {
+    position: absolute; 
+    display: flex;
+    justify-content: center;
+  }
+  
+  .shopping-list-button {
+    position: absolute;
+    right: 20px;
+    background-color: var(--color1);
+    color: var(--color3);
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+    margin-right: 50px;
+  }
+  
+  .app-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  @media only screen and (max-width: 479px) {
+    header {
+      height: 80px;
+      margin-bottom: 0px;
+    }
+    
+    .sb-container { 
+      display: flex;
+      justify-content: center;
+    }
+    
+    .shopping-list-button {
+      display: none;
+    }
+  }
+  

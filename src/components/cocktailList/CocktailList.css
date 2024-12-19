@@ -1,0 +1,11 @@
+.cocktail-list {
+    display: flex;
+    flex-direction: column;
+    max-width: 50vw;
+}
+
+@media only screen and (max-width: 479px) {
+    .cocktail-list {
+        max-width: 95vw;
+    }
+}
