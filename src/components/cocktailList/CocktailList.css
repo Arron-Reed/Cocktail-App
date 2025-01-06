@@ -4,6 +4,24 @@
     max-width: 50vw;
 }
 
+@media only screen and (max-width: 1666px) {
+    .cocktail-list {
+        max-width: 60vw;
+    }
+}
+
+@media only screen and (max-width: 1366px) {
+    .cocktail-list {
+        max-width: 70vw;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .cocktail-list {
+        max-width: 80vw;
+    }
+}
+
 @media only screen and (max-width: 479px) {
     .cocktail-list {
         max-width: 95vw;
