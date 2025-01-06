@@ -16,6 +16,10 @@ export const SearchBar = ({ onSearch }) => {
 
   return html`
   <link rel="stylesheet" href="/src/components/searchBar/SearchBar.css" />
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <div class="searchbar-container">
       <form @submit="${handleSubmit}">
         <input
@@ -27,8 +31,9 @@ export const SearchBar = ({ onSearch }) => {
           aria-label="Search for a cocktail"
         />
         <button type="submit" class="search-button" aria-label="Search">
-          🔍
+          <i class="fas fa-search"></i>
         </button>
+
       </form>
     </div>
   `;

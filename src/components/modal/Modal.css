@@ -1,42 +1,57 @@
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(43, 40, 40, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .modal-content {
-    background-color: var(--color8);
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 700px;
-    width: 90%;
-    position: relative;
-    text-align: center;
-  }
-  
-  .modal-close {
-    position: absolute;
-    top: 4px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 2.5rem;
-    cursor: pointer;
-  }
-  
-  .modal-body {
-    margin-top: 15px;
-    text-align: center;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(43, 40, 40, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 
-  .no-scroll {
-    overflow: hidden;
+.modal-content {
+  background-color: var(--color8);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 700px;
+  width: 90%;
+  position: relative;
+  text-align: center;
+}
+
+.modal-close {
+  position: absolute;
+  top: 4px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.modal-body {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 1024px) {
+  .modal-content {
+    max-width: 700px;
+    width: 50%;
+    max-height: 80vh;
   }
-  
+}
+
+@media only screen and (max-width: 480px) {
+  .modal-content {
+    max-width: 700px;
+    width: 70vw;
+    max-height: 80vh;
+  }
+}

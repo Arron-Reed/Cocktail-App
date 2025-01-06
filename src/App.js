@@ -63,15 +63,19 @@ const App = () => {
 
   const shoppingListContent = html`
     <shopping-list
-      .items =${shoppingList}
-      .onRemoveItem =${handleRemoveFromShoppingList}
-      .onPrint =${handlePrint}
+      .items=${shoppingList}
+      .onRemoveItem=${handleRemoveFromShoppingList}
+      .onPrint=${handlePrint}
     ></shopping-list>
   `;
 
   return html`
-  <link rel="stylesheet" href="/src/App.css" />
-  <link rel="stylesheet" href="/src/styles.css" />
+    <link rel="stylesheet" href="/src/App.css" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
     <div class="app-container">
       <header>
         <div class="sb-container">
@@ -82,6 +86,12 @@ const App = () => {
           @click="${() => setShowShoppingListModal(true)}"
         >
           Shopping List
+        </button>
+        <button
+          class="shopping-list-button-mobile"
+          @click="${() => setShowShoppingListModal(true)}"
+        >
+        <i class="fa-solid fa-cart-shopping"></i>
         </button>
       </header>
       <div class="app-content">
