@@ -15,11 +15,11 @@ This project is a **Cocktail App** that I originally built with **React** and la
    - I translated the app to **Haunted** (a library for creating reactive web components) and **lit-html** (a fast, efficient template rendering library).
    - This process introduced challenges:
      - **React Hooks vs Haunted Hooks**: Adjusting to the differences between React's hooks and Haunted's hooks was initially tricky, especially when managing state within web components.
-     - **Shadow DOM Encapsulation**: Haunted and lit-html default to using the Shadow DOM, which caused styling issues when deploying. These challenges deepened my understanding of encapsulation and global vs scoped styles.
+     - **Shadow DOM Encapsulation**: Implementing styles encapsulated within each component using the Shadow DOM required careful planning and adjustments for global vs scoped styles.
 
 3. **Rebuilding in Vanilla JavaScript**:
-   - To overcome deployment issues, I rebuilt the app entirely in vanilla JavaScript using only Haunted and lit-html.
-   - This stripped-down version avoided bundlers like Vite or React dependencies and became a lightweight, fast, and scalable application.
+   - To streamline the architecture and fully leverage the power of web components, I rebuilt the app entirely in vanilla JavaScript using only Haunted and lit-html.
+   - This allowed me to use encapsulated styles with the Shadow DOM, providing a clean and modular structure without the need for external libraries like Vite or React.
 
 ## About the App
 
@@ -41,23 +41,20 @@ This project is a **Cocktail App** that I originally built with **React** and la
 ### **How It Works**
 - The app leverages Haunted's hooks for managing state and lit-html for efficiently rendering templates.
 - Each component is implemented as a web component (e.g., `<search-bar>`, `<cocktail-card>`, `<cocktail-list>`).
-- Styles are applied globally, and the Shadow DOM is disabled (`useShadowDOM: false`) to simplify deployment and styling.
+- **Styles are encapsulated within each component** using the Shadow DOM, ensuring no style leakage or conflicts between components. This approach provides a clean and modular structure, aligning with modern web development practices.
 
 ### **Live Version**
 Visit the deployed version here: **[www.arronreed.com/cocktail-app](https://www.arronreed.com/cocktail-app)**.
 
 ## Benefits of Haunted and lit-html
 - **Lightweight**: Unlike React, Haunted and lit-html don't require a heavy runtime or virtual DOM, making the app faster and smaller.
-- **Simple State Management**: Haunted hooks offer a minimalist way to manage state without the complexity of React's extensive ecosystem.
-- **Web Component Standard**: Using Haunted and lit-html allowed me to create reusable, encapsulated components that follow the web component standard.
+- **Encapsulation with Shadow DOM**: Component styles are scoped and isolated from the rest of the application, avoiding potential style conflicts and enabling better modularity.
+- **Web Component Standard**: Using Haunted and lit-html allowed me to create reusable, encapsulated components that adhere to the web component standard.
 
 ## Challenges and Learning Curve
 - **Shadow DOM & Encapsulation**:
-  - The default use of the Shadow DOM in Haunted and lit-html caused issues with global styles and deployment.
-  - Disabling the Shadow DOM (`useShadowDOM: false`) helped resolve these issues, but I had to learn how to manage styles without encapsulation.
-
-- **Global vs Scoped Styles**:
-  - Balancing scoped styles for components while maintaining global styling was a key challenge during the transition.
+  - While the Shadow DOM provides style encapsulation, it also introduces a learning curve, particularly when balancing global styles with scoped styles for components.
+  - Implementing styles within the Shadow DOM required a deeper understanding of how encapsulated styles interact with the rest of the app.
 
 - **React Hooks vs Haunted Hooks**:
   - Adjusting to Haunted's hook system and understanding its lifecycle was initially a hurdle, but it helped deepen my understanding of JavaScript.
