@@ -2,10 +2,10 @@ import { html, render } from "lit-html";
 import { component, useState, useEffect } from "haunted";
 import { searchCocktails } from "./services/cocktailApiService";
 import "./App.css";
-import { SearchBar } from "./components/SearchBar/SearchBar";
-import { CocktailList } from "./components/CocktailList/CocktailList";
-import { ShoppingList } from "./components/ShoppingList/ShoppingList";
-import { Toaster } from "./components/Toaster/Toaster";
+import { SearchBar } from "./components/searchBar/SearchBar";
+import { CocktailList } from "./components/cocktailList/CocktailList";
+import { ShoppingList } from "./components/shoppingList/ShoppingList";
+import { Toaster } from "./components/toaster/Toaster";
 
 const App = () => {
   const [shoppingList, setShoppingList] = useState(
@@ -19,18 +19,19 @@ const App = () => {
     localStorage.setItem("shoppingList", JSON.stringify([...shoppingList]));
   }, [shoppingList]);
 
-
   const handleSearch = async (query) => {
     setToasterMessage("Searching...");
     const results = await searchCocktails(query);
     setCocktails(results || []);
-    setToasterMessage(results.length ? "Here are the results." : "No results found.");
+    setToasterMessage(
+      results.length ? "Here are the results." : "No results found."
+    );
   };
 
   // Removes duplicate that are case insensitive (lime juice or Lime juice)
   const capitalizeFirstLetter = (str) =>
     str.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
-  
+
   const handleAddToShoppingList = (ingredients) => {
     const updatedList = new Set([
       ...shoppingList,
@@ -39,7 +40,7 @@ const App = () => {
     setShoppingList(updatedList);
     setToasterMessage("Ingredients added to shopping list.");
   };
-  
+
   const handleRemoveFromShoppingList = (ingredient) => {
     const formattedIngredient = capitalizeFirstLetter(ingredient);
     shoppingList.delete(formattedIngredient);
