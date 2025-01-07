@@ -289,75 +289,6 @@
   }
 }
 
-.category-block {
-  margin-bottom: 15px;
-}
-
-.category-block p {
-  font-size: 0.9rem;
-}
-
-.category {
-  width: 150px;
-  padding: 3px 0;
-  margin: 0 5px;
-}
-
-.glass {
-  width: 150px;
-  padding: 3px 0;
-  margin: 0 5px;
-}
-
-.alcoholic {
-  width: 150px;
-  padding: 3px 0;
-  margin: 0 5px;
-}
-
-.details-content .details-left {
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-}
-
-.details-ingredients ul img {
-  width: 30px;
-  height: 30px;
-  margin: 0 5px 3px 0;
-}
-
-.details-ingredients ul p {
-  display: flex;
-  font-size: 0.7rem;
-  line-height: 0.7rem;
-}
-
-.details-ingredients ul .item {
-  font-size: 0.8rem;
-}
-
-.details-line {
-  background-color: black;
-  width: 1px;
-  margin: 15px 0;
-}
-
-.details-right {
-  width: 60%;
-}
-
-.details-right .image img {
-  max-width: 90%;
-  max-height: 90%;
-}
-
-.details-instructions p {
-  font-size: 0.8rem;
-  line-height: 0.8rem;
-  padding: 10px 10px;
-}
-
 @media only screen and (max-width: 600px) {
   .details-header h2 {
     font-size: 1.6rem;
@@ -463,46 +394,35 @@
     -webkit-line-clamp: 4;
   }
 
-  .category-block {
-    margin-bottom: 15px;
-  }
-
-  .category-block p {
-    font-size: 0.9rem;
-  }
-
   .category {
-    width: 150px;
+    width: 100px;
     padding: 3px 0;
     margin: 0 5px;
   }
 
   .glass {
-    width: 150px;
+    width: 100px;
     padding: 3px 0;
     margin: 0 5px;
   }
 
   .alcoholic {
-    width: 150px;
+    width: 100px;
     padding: 3px 0;
     margin: 0 5px;
   }
 
   .details-content .details-left {
-    display: flex;
-    flex-direction: column;
     width: 40%;
   }
 
   .details-ingredients ul img {
     width: 30px;
     height: 30px;
-    margin: 0 5px 3px 0;
+    margin: 0 5px 0 0;
   }
 
   .details-ingredients ul p {
-    display: flex;
     font-size: 0.7rem;
     line-height: 0.7rem;
   }
@@ -519,16 +439,17 @@
 
   .details-right {
     width: 60%;
+    padding-left: 10px;
   }
 
   .details-right .image img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 100%;
+    max-height: 100%;
   }
 
   .details-instructions p {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     line-height: 0.8rem;
-    padding: 10px 10px;
+    padding: 10px 0px;
   }
 }
