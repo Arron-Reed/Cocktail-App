@@ -15,25 +15,23 @@ export const saveShoppingList = (items) => {
 
 export const ShoppingList = ({ items, onRemoveItem, onPrint }) => {
   return html`
-  <link rel="stylesheet" href="/src/components/shoppingList/ShoppingList.css" />
-  <link rel="stylesheet" href="/src/styles.css" />
     <div class="shopping-list">
-     <h2>Shopping List</h2>
-     <div class="ingredients-container">
-      <ul>
-        ${Array.from(items).map(
-          (item) =>
-            html`<li>
-              <span class="ingredient-name">${item}</span>
-              <button
-                @click="${() => onRemoveItem(item)}"
-                class="remove-button"
-              >
-                Remove
-              </button>
-            </li>`
-        )}
-      </ul>
+      <h2>Shopping List</h2>
+      <div class="ingredients-container">
+        <ul>
+          ${Array.from(items).map(
+            (item) =>
+              html`<li>
+                <span class="ingredient-name">${item}</span>
+                <button
+                  @click="${() => onRemoveItem(item)}"
+                  class="remove-button"
+                >
+                  Remove
+                </button>
+              </li>`
+          )}
+        </ul>
       </div>
       <div class="print-button">
         <button @click="${onPrint}">Print Shopping List</button>
@@ -44,5 +42,5 @@ export const ShoppingList = ({ items, onRemoveItem, onPrint }) => {
 
 customElements.define(
   "shopping-list",
-  component(ShoppingList)
+  component(ShoppingList, { useShadowDOM: false })
 );

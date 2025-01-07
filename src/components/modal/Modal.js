@@ -13,7 +13,7 @@ export const Modal = ({ show, title, content, onClose }) => {
       document.body.classList.remove("no-scroll");
     };
   }, [show]);
-  
+
   if (!show) return null;
 
   const handleOverlayClick = (e) => {
@@ -23,9 +23,6 @@ export const Modal = ({ show, title, content, onClose }) => {
   };
 
   return html`
-  <link rel="stylesheet" href="/src/components/modal/Modal.css" />
-  <link rel="stylesheet" href="/src/styles.css" />
-
     <div class="modal-overlay" @click="${handleOverlayClick}">
       <div class="modal-content">
         <button class="modal-close" @click="${onClose}">&times</button>
@@ -35,4 +32,4 @@ export const Modal = ({ show, title, content, onClose }) => {
   `;
 };
 
-customElements.define("popup-modal", component(Modal));
+customElements.define("popup-modal", component(Modal, { useShadowDOM: false }));

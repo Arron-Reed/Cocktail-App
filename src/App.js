@@ -1,8 +1,8 @@
 import { html } from "lit-html";
 import { component, useState, useEffect } from "haunted";
 import { searchCocktails } from "./services/cocktailApiService";
-import "/src/App.css";
-import "/src/styles.css";
+import "./App.css";
+import "./styles.css";
 import "./components/modal/Modal.css";
 import "./components/searchBar/SearchBar";
 import "./components/cocktailList/CocktailList";
@@ -70,8 +70,6 @@ const App = () => {
   `;
 
   return html`
-    <link rel="stylesheet" href="/src/App.css" />
-    <link rel="stylesheet" href="/src/styles.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       rel="stylesheet"
@@ -91,7 +89,7 @@ const App = () => {
           class="shopping-list-button-mobile"
           @click="${() => setShowShoppingListModal(true)}"
         >
-        <i class="fa-solid fa-cart-shopping"></i>
+          <i class="fa-solid fa-cart-shopping"></i>
         </button>
       </header>
       <div class="app-content">
@@ -116,4 +114,4 @@ const App = () => {
   `;
 };
 
-customElements.define("cocktail-app", component(App));
+customElements.define("cocktail-app", component(App, { useShadowDOM: false }));

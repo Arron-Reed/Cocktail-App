@@ -1,6 +1,7 @@
 import { html } from "lit-html";
 import { component, useState } from "haunted";
 import "../modal/Modal";
+import "./CocktailCard.css";
 import { getIngredientsWithMeasurements } from "../../utils";
 import { fetchIngredientThumbnails } from "../../services/cocktailApiService";
 
@@ -31,8 +32,6 @@ export const CocktailCard = ({ cocktail, onAddToShoppingList }) => {
 
   // HTML section that is passed to the modal showing all Cocktail Details
   const cocktailDetails = html`
-  <link rel="stylesheet" href="/src/components/cocktailCard/CocktailCard.css" />
-  <link rel="stylesheet" href="/src/styles.css" />
     <div class="cocktail-details">
       <div class="details-header">
         <h2>${cocktail.strDrink}</h2>
@@ -89,8 +88,6 @@ export const CocktailCard = ({ cocktail, onAddToShoppingList }) => {
 
   // HTML Section that shows in the cocktail list on the main page
   return html`
-  <link rel="stylesheet" href="/src/components/cocktailCard/CocktailCard.css" />
-  <link rel="stylesheet" href="/src/styles.css" />
     <div class="cocktail-card" @click="${handleCardClick}">
       <div class="image">
         <img src="${cocktail.strDrinkThumb}" alt="${cocktail.strDrink}" />
@@ -126,5 +123,5 @@ export const CocktailCard = ({ cocktail, onAddToShoppingList }) => {
 
 customElements.define(
   "cocktail-card",
-  component(CocktailCard)
+  component(CocktailCard, { useShadowDOM: false })
 );

@@ -5,8 +5,6 @@ import "./CocktailList.css";
 
 export const CocktailList = ({ cocktails = [], onAddToShoppingList }) => {
   return html`
-  <link rel="stylesheet" href="/src/components/cocktailList/CocktailList.css" />
-  <link rel="stylesheet" href="/src/styles.css" />
     <div class="cocktail-list">
       ${cocktails.map(
         (cocktail) =>
@@ -21,4 +19,7 @@ export const CocktailList = ({ cocktails = [], onAddToShoppingList }) => {
   `;
 };
 
-customElements.define("cocktail-list", component(CocktailList));
+customElements.define(
+  "cocktail-list",
+  component(CocktailList, { useShadowDOM: false })
+);

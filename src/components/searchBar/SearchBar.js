@@ -1,5 +1,6 @@
 import { html } from "lit-html";
 import { component, useState } from "haunted";
+import "./SearchBar.css";
 
 export const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState("");
@@ -15,8 +16,7 @@ export const SearchBar = ({ onSearch }) => {
   };
 
   return html`
-  <link rel="stylesheet" href="/src/components/searchBar/SearchBar.css" />
-  <link
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
@@ -33,10 +33,12 @@ export const SearchBar = ({ onSearch }) => {
         <button type="submit" class="search-button" aria-label="Search">
           <i class="fas fa-search"></i>
         </button>
-
       </form>
     </div>
   `;
 };
 
-customElements.define("search-bar", component(SearchBar));
+customElements.define(
+  "search-bar",
+  component(SearchBar, { useShadowDOM: false })
+);

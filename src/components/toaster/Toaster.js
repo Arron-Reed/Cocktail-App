@@ -11,9 +11,10 @@ export const Toaster = ({ message, duration = 1500, onHide }) => {
     return () => clearTimeout(timer);
   }, [message, duration, onHide]);
 
-  return message ? html`
-  <link rel="stylesheet" href="/src/components/toaster/Toaster.css" />
-  <link rel="stylesheet" href="/src/styles.css" /><div class="toaster">${message}</div>` : null;
+  return message ? html` <div class="toaster">${message}</div>` : null;
 };
 
-customElements.define("toaster-message", component(Toaster));
+customElements.define(
+  "toaster-message",
+  component(Toaster, { useShadowDOM: false })
+);
