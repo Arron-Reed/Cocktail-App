@@ -1,4 +1,4 @@
-# Haunted and lit-html Cocktail App
+# Haunted and Lit-html Cocktail App
 
 ### **Live Version**
 Visit the deployed version here: **[www.arronreed.com/cocktail-app](https://www.arronreed.com/cocktail-app)**.
