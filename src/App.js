@@ -33,6 +33,20 @@ const App = () => {
     );
   };
 
+  const handleFilter = async (type) => {
+    setToasterMessage("Filtering...");
+    const results = await searchCocktails("");
+    const filteredResults = results.filter((cocktail) =>
+      type === "non-alcoholic"
+        ? cocktail.strAlcoholic === "Non_Alcoholic"
+        : cocktail.strAlcoholic !== "Non_Alcoholic"
+    );
+    setCocktails(filteredResults);
+    setToasterMessage(
+      filteredResults.length ? "Here are the results." : "No drinks found."
+    );
+  };
+
   const capitalizeFirstLetter = (str) =>
     str.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
 
@@ -91,10 +105,39 @@ const App = () => {
           class="shopping-list-button-mobile"
           @click="${() => setShowShoppingListModal(true)}"
         >
-        <i class="fa-solid fa-cart-shopping"></i>
+          <i class="fa-solid fa-cart-shopping"></i>
         </button>
       </header>
       <div class="app-content">
+        ${
+          cocktails.length === 0
+            ? html`
+                <div class="homepage">
+                  <h1>Welcome to my Cocktail App</h1>
+                  <button
+                    class="button"
+                    @click="${() => handleFilter("non-alcoholic")}"
+                  >
+                    Non-Alcoholic Drinks
+                  </button>
+                  <button
+                    class="button"
+                    @click="${() => handleFilter("alcoholic")}"
+                  >
+                    Alcoholic Drinks
+                  </button>
+                </div>
+              `
+            : html`
+                <cocktail-list
+                  .cocktails="$(cocktails)"
+                  .onAddToShoppingList=${handleAddToShoppingList}
+                >
+                </cocktail-list>
+              `
+        }
+        </div>
+        
         <div class="cocktailList-container">
           <cocktail-list
             .cocktails=${cocktails}

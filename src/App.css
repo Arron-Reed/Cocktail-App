@@ -54,6 +54,33 @@ header {
   justify-content: center;
 }
 
+.homepage {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.homepage h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.homepage .button {
+  background-color: var(--color1);
+  color: var(--color3);
+  padding: 15px 25px;
+  border: none;
+  border-radius: 5px;
+  margin: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.homepage .button:hover {
+  transform: scale(1.05);
+  transition: 0.3s ease;
+}
+
 @media only screen and (max-width: 1024px) {
   header {
     height: 80px;
@@ -68,7 +95,6 @@ header {
     display: block;
     right: 15px;
   }
-  
 }
 
 @media only screen and (max-width: 800px) {
